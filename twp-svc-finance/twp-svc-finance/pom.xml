@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>cn.trawe.pay</groupId>
+    	<artifactId>twp-svc-finance-parent</artifactId>
+   		<version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>twp-svc-finance</artifactId>
+    <properties>
+        <mapper.version>3.4.0</mapper.version>
+        <maven.compile.source>1.8</maven.compile.source>
+        <maven.compile.target>1.8</maven.compile.target>
+    </properties>
+
+    <profiles>
+        <profile>
+            <!-- 开发环境 -->
+            <id>DEV</id>
+            <properties>
+                <!--<tw-eureka-url>http://localhost:18000/eureka/</tw-eureka-url> -->
+                <twp-meta-server-url>http://192.168.6.38:8080,http://192.168.6.39:8080</twp-meta-server-url>
+                <twp-meta-app-id>twp-ytk-pub-config</twp-meta-app-id>
+                <env>DEV</env>
+            </properties>
+            
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <!-- 测试环境 -->
+            <id>FAT</id>
+            <properties>
+                <env>FAT</env>
+                <twp-meta-server-url>http://192.168.6.4:8080</twp-meta-server-url>
+                <twp-meta-app-id>twp-ytk-pub-config</twp-meta-app-id>
+            </properties>
+        </profile>
+        <profile>
+            <!-- 预发环境 -->
+            <id>UAT</id>
+            <properties>
+            	<env>FAT</env>
+                <twp-meta-server-url>http://172.18.2.124:8080</twp-meta-server-url>
+                <twp-meta-app-id>twp-ytk-pub-config</twp-meta-app-id>
+            </properties>
+        </profile>
+        <profile>
+            <!-- 生产环境 -->
+            <id>PRO</id>
+            <properties>
+            	<env>PRO</env>
+                <twp-meta-server-url>http://172.18.2.121:8080,http://172.18.2.122:8080</twp-meta-server-url>
+                <twp-meta-app-id>twp-ytk-pub-config</twp-meta-app-id>
+            </properties>
+        </profile>
+    </profiles>
+
+    <dependencies>
+       <dependency>
+        <groupId>cn.trawe.pay</groupId>
+  		<artifactId>twp-svc-finance-service</artifactId>
+  		<version>1.0.0-SNAPSHOT</version>
+  		<exclusions>
+              <exclusion>
+                  <artifactId>log4j-slf4j-impl</artifactId>
+                  <groupId>org.apache.logging.log4j</groupId>
+              </exclusion>
+              <exclusion>
+                  <artifactId>slf4j-log4j12</artifactId>
+                  <groupId>org.slf4j</groupId>
+              </exclusion>
+          </exclusions>
+       </dependency>
+       <dependency>
+            <groupId>cn.trawe.pay</groupId>
+            <artifactId>twp-svc-finance-expose</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <exclusions>
+  			<exclusion>
+  				<groupId>org.slf4j</groupId>
+  				<artifactId>slf4j-log4j12</artifactId>
+  			</exclusion>
+  		</exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                   <artifactId>logback-classic</artifactId>
+                </exclusion>
+           </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-core</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.ctrip.framework.apollo</groupId>
+            <artifactId>apollo-client</artifactId>
+            <version>1.1.0</version>
+        </dependency>
+        <!--数据库访问库 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <!--<version>1.1.10</version> -->
+        </dependency>
+         <dependency>
+            <groupId>cn.trawe.pay</groupId>
+            <artifactId>tw-lib-rocketmq</artifactId>
+            <version>1.1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun.openservices</groupId>
+            <artifactId>ons-client</artifactId>
+            <version>1.8.0.Final</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>twp-svc-finance</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources/${env}</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.yml</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <configuration>
+                        <encoding>utf-8</encoding>
+                        <useDefaultDelimiters>true</useDefaultDelimiters>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.springframework</groupId>
+                        <artifactId>springloaded</artifactId>
+                        <version>1.2.6.RELEASE</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <!-- unit tests (*Test) -->
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.4.11</version>
+                <configuration>
+                    <imageName>${project.artifactId}</imageName>
+                    <imageTags>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <forceTags>true</forceTags>
+                    <dockerDirectory>src/main/docker</dockerDirectory>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -1,0 +1,47 @@
+#####DEV
+PF: DEV
+
+server:
+  port: 18024
+
+spring:
+  application:
+    name: twp-svc-finance
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: NON_NULL
+
+#is_mer_recharge: true
+#  datasource:
+#    url: jdbc:mysql://192.168.6.60:3306/db_private_cloude?useUnicode=true&characterEncoding=utf8&mysqlEncoding=utf8
+#    data-username: traweTest
+#    data-password: traweTest01
+#    driver-class-name: com.mysql.jdbc.Driver
+
+#aliyun:
+    #mqs:
+        #finance:
+            #accessKey: LTAIkkhOA1BfHGrC
+            #groups:
+                #financeMessage:
+                    #consumeThreadNums: 2
+                    #groupId: GID_product_card_dev
+                    #name: financeMessage
+                    #tag: finance_message
+                    #topic: trawe_etc_dev
+                    #autoStartConsume: true
+            #name: finance
+            #namesrvAddr: http://onsaddr.mq-internet-access.mq-internet.aliyuncs.com:80
+            #secretKey: 2TAASx8BX0Vy3OXsj0RJWEbpBxwx1Q
+            
+aliyun:
+    mqs:
+        payroute:
+            groups:
+                payorders_2:
+                    consumeThreadNums: 10
+                    autoStartConsume: true
+                    autoStartProduce: true
+                    maxReconsumeTimes: 5
+            

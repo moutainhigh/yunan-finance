@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>cn.trawe.pay</groupId>
+        <artifactId>tw-parent</artifactId>
+        <!-- <version>2.0.6.RELEASE</version> -->
+        <version>1.0.0-RELEASE</version>
+    </parent>
+
+    <artifactId>twp-svc-finance-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>twp-svc-finance</module>
+        <module>twp-svc-finance-expose</module>
+    	<module>twp-svc-finance-service</module>
+        <module>twp-svc-finance-task</module>
+  </modules>
+  
+    <dependencies>
+         
+
+
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <!-- 增加springboot 热部署 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <optional>true</optional> <!-- 这个需要为 true 热部署才有效 -->
+        </dependency>
+        <!-- junit 测试类自动生成 -->
+        <!-- testing -->
+
+       <!--  <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>1.3</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>3.0.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>el-impl</artifactId>
+            <version>2.2</version>
+            <scope>test</scope>
+        </dependency> -->
+
+       
+
+       
+
+       
+
+       <!--  <dependency>
+            <groupId>com.jayway.jsonpath</groupId>
+            <artifactId>json-path</artifactId>
+            <version>2.0.0</version>
+        </dependency> -->
+
+  
+
+        <!-- 加入测试类开始-->
+       <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+      </dependency>
+       <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        
+        <!--   
+            <dependency>
+            <groupId>org.evosuite</groupId>
+            <artifactId>evosuite-standalone-runtime</artifactId>
+            <version>1.0.6</version>
+            <scope>test</scope>
+        </dependency> -->
+
+        <!-- <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency> -->
+
+      <!--   <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>2.5.0</version>
+            <scope>test</scope>
+        </dependency>
+         -->
+         
+      <!--     <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>1.10.19</version>
+            <scope>test</scope>
+        </dependency> -->
+
+        <!-- <dependency>
+            <groupId>com.github.springtestdbunit</groupId>
+            <artifactId>spring-test-dbunit</artifactId>
+            <version>1.2.1</version>
+            <scope>test</scope>
+        </dependency> -->
+         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+<!-- 
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.jsonzou</groupId>
+            <artifactId>jmockdata</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-core</artifactId>
+            <version>2.0.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito2</artifactId>
+            <version>2.0.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-reflect</artifactId>
+            <version>2.0.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version>2.0.0</version>
+            <scope>test</scope>
+        </dependency> -->
+        <!-- 加入测试类结束 -->
+        
+        <!--日志-->
+		<dependency>
+		 <groupId>cn.trawe</groupId>
+		 <artifactId>tw-lib-log</artifactId>
+		 <version>1.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<!--如果需要打印json格式的日志需要增加下面这个jar包-->
+<!-- 		<dependency>
+		 <groupId>net.logstash.logback</groupId>
+		 <artifactId>logstash-logback-encoder</artifactId>
+		 <version>5.1</version>
+		</dependency> -->
+    </dependencies>
+
+</project>

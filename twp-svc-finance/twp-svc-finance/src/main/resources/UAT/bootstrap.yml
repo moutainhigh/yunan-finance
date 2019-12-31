@@ -1,0 +1,11 @@
+apollo:
+  bootstrap:
+    enabled: true   #注入默认application namespace的配置示例
+    namespaces: application,twp-pub-config,twp-database-config,twp-redis-config #需要添加的配置，多个已逗号分隔
+  meta: ${twp-meta-server-url}
+
+app:
+  #应用的身份标识，如果服务没有私有配置，此处直接指定公共配置的应用id：twp-pub-config
+  #如有私有特定配置，则需在apollo上创建应用，然后添加配置
+  id: ${twp-meta-app-id}   #应用id
+  

@@ -1,0 +1,14 @@
+server:
+  port: 18988
+spring:
+  application:
+    name: twp-svc-finance-task
+finance:
+  task:     # finance定时任务项目
+    schedule: # 定时任务
+      settle:  0 */1 * * * ?  #盘账定时任务
+    settleApartDays: -1  # 要结算的日期相对于今天差几天，0表示今天，-1表示昨天。
+    settleBillOperator: admin
+
+
+

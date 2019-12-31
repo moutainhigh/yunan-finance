@@ -1,0 +1,15 @@
+# from base image centos
+FROM centos-apm:6
+MAINTAINER houmaoqing
+
+COPY agent.config /usr/lib/apm-agent/config/agent.config
+
+COPY twp-svc-finance-task.jar /usr/local/app.jar
+RUN cp -aRp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
+
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
+ENV LC_ALL en_US.UTF-8
+
+#start app
+ENTRYPOINT ["java" ,"-jar","/usr/local/app.jar"]
